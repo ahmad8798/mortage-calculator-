@@ -1,5 +1,5 @@
 const mortageForm = document.querySelector('#mortgageForm')
-
+const rightCol = document.querySelector('.right-col')
 mortageForm.addEventListener('submit',validateForm)
 function validateForm(event) {
     event.preventDefault()
@@ -83,7 +83,9 @@ function validateForm(event) {
     if (isValid) {
 
         if(mortgageType.value=="Repayment"){
-            const principal = parseFloat(mortgageAmount);
+        rightCol.innerHTML = ''
+
+        const principal = parseFloat(mortgageAmount);
         const annualInterestRate = parseFloat(interestRate) / 100;
         const numberOfPayments = parseInt(mortgageTerm) * 12;
         
@@ -93,9 +95,12 @@ function validateForm(event) {
         // Monthly repayment calculation (using the formula for an amortizing loan)
         const monthlyRepayment = (principal * monthlyInterestRate) / 
             (1 - Math.pow(1 + monthlyInterestRate, -numberOfPayments));
-        
+            
         // Print the repayment value in the console
         console.log(`Monthly Repayment: $${monthlyRepayment.toFixed(2)}`);
+            showResult(monthlyRepayment.toFixed(2),numberOfPayments,mortgageType.value)
+
+
         }else if(mortgageType.value=="Interest Only"){
             // Calculate the monthly interest payment
 const principal = parseFloat(mortgageAmount);
@@ -110,7 +115,7 @@ const monthlyInterestPayment = principal * monthlyInterestRate;
 
 // Print the monthly interest payment value in the console
 console.log(`Monthly Interest Payment: $${monthlyInterestPayment.toFixed(2)}`);
-
+showResult(monthlyInterestPayment.toFixed(2),numberOfPayments,mortgageType.value)
         }
         
         
@@ -121,6 +126,7 @@ console.log(`Monthly Interest Payment: $${monthlyInterestPayment.toFixed(2)}`);
   
 // Clear form function
 function clearForm() {
+    rightCol.innerHTML = ''
     document.getElementById("mortgageForm").reset();
     document.getElementById("mortgageAmountError").textContent = "";
     document.getElementById("mortgageTermError").textContent = "";
@@ -131,4 +137,47 @@ function clearForm() {
     inputGroupText.forEach(el => {
         el.classList.remove('bg-danger', 'text-white');
     });
+    rightCol.innerHTML = `
+     <div
+            class="d-flex flex-column justify-content-center align-items-center h-100 text-center"
+          >
+            <div class="d-flex justify-content-center">
+              <img
+                width="150px"
+                height="150px"
+                src="./assets/images/illustration-empty.svg"
+                alt="Empty illustration"
+              />
+            </div>
+            <h5 class="text-white">Results shown here</h5>
+            <p>
+              Complete the form and click "Calculate repayments" to see what your monthly
+              repayments would be.
+            </p>
+          </div>
+    `
+
+}
+
+
+function showResult(payment,numerOfPayments,typeOfMortage){
+
+    rightCol.innerHTML = `
+         <div class="result">
+
+            <h5 class="text-white">Your results</h5>
+            <p>Your results are shown below based on the information you
+              provided. to adjust the results,edit the form and click
+              "calculate repayments" again
+            </p>
+              <div class="result-container">
+                <p>Your monthly ${typeOfMortage=="Repayment"?"Repayment":"Interest"}</p>
+                <h1>$${payment}</h1>
+                <hr>
+                <p>Total You'll repay over the Term</p>
+                <h5>$${(payment*numerOfPayments).toFixed(2)}</h5>
+              </div>
+          </div>
+    `
+
 }

@@ -103,7 +103,26 @@ body{
     font-weight: 600;
 }
 
-
+.result-container {
+    background-color: hsl(210, 60%, 16%);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 20px;
+    margin-top: 20px;
+    margin-inline: auto;
+    width: 65%;
+    border-radius: 5px;
+    h1{
+        font-weight: 800;
+        color: hsl(61, 70%, 52%);
+    }
+    h5{
+        color: white;
+    }
+    hr{
+        color: white;
+    }
+    border-top: 2px solid  hsl(61, 70%, 52%);
+}
 
 
 
@@ -113,7 +132,11 @@ body{
         width: 70vw;
      
     }
+    .result-container {
 
+        width: 80%;
+    
+    }
     .right-col{
         background-color: hsl(202, 55%, 16%);
         border-bottom-left-radius: 50px;
@@ -121,7 +144,7 @@ body{
 }
 
 @media screen and (min-width: 768px) {
-    
+
     .cal-container{
         margin-top: 20px;
         width: 85vw;
