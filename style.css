@@ -109,7 +109,7 @@ body{
     padding: 20px;
     margin-top: 20px;
     margin-inline: auto;
-    width: 65%;
+    width: 75%;
     border-radius: 5px;
     h1{
         font-weight: 800;
@@ -157,7 +157,7 @@ body{
 @media screen and (min-width: 992px) {
     .cal-container{
         margin-top: 0;
-        width: 85vw;
+        width: 65vw;
     }
     .right-col {
         border-bottom-left-radius: 50px; /* Remove border-radius for medium screens */
