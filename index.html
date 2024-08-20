@@ -33,86 +33,105 @@
           <!-- Header of the calculator with title and clear button -->
           <div class="d-flex flex-column flex-sm-row justify-content-between cal-header mb-3">
             <h5>Mortgage calculator</h5>
-            <a href="#">Clear All</a>
+            <a href="#" onclick="clearForm()">Clear All</a>
           </div>
 
           <!-- Form elements for inputting mortgage details -->
-          <div class="row">
-            <!-- Mortgage Amount input -->
-            <div class="col-lg-12">
-              <p>Mortgage Amount</p>
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">@</span>
-                <input
-                  type="text"
-                  class="form-control"
-                  aria-label="Mortgage Amount"
-                  aria-describedby="basic-addon1"
-                />
-              </div>
-            </div>
-
-            <!-- Mortgage Term input -->
-            <div class="col-lg-6 col-md-6">
-              <p>Mortgage Term</p>
-              <div class="input-group mb-3">
-                <input
-                  type="text"
-                  class="form-control"
-                  aria-label="Mortgage Term"
-                  aria-describedby="basic-addon2"
-                />
-                <span class="input-group-text w-lg-50" id="basic-addon2">years</span>
-              </div>
-            </div>
-
-            <!-- Interest Rate input -->
-            <div class="col-lg-6 col-md-6">
-              <p>Interest Rate</p>
-              <div class="input-group mb-3">
-                <input
-                  type="text"
-                  class="form-control"
-                  aria-label="Interest Rate"
-                  aria-describedby="basic-addon2"
-                />
-                <span class="input-group-text w-lg-25" id="basic-addon2">%</span>
-              </div>
-            </div>
-
-            <!-- Mortgage Type selection (Radio buttons) -->
-            <div class="col-lg-12">
-              <p>Mortgage Type</p>
-              <div class="radio-list">
-                <div class="radio-item">
-                  <input type="radio" name="radio" id="radio1" />
-                  <label for="radio1">Repayment</label>
+          <form id="mortgageForm">
+            <div class="row">
+              <!-- Mortgage Amount input -->
+              <div class="col-lg-12 Moratage-Amount-column">
+                <p>Mortgage Amount</p>
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1">$</span>
+                  <input
+                    type="text"
+                    id="mortgageAmount"
+                    class="form-control"
+                    aria-label="Mortgage Amount"
+                    aria-describedby="basic-addon1"
+                  />
                 </div>
+                <p id="mortgageAmountError" class="text-danger"></p>
               </div>
-              <div class="radio-list">
-                <div class="radio-item">
-                  <input type="radio" name="radio" id="radio2" />
-                  <label for="radio2">Interest Only</label>
-                </div>
-              </div>
-            </div>
 
-            <!-- Calculate button -->
-            <div class="col-lg-12 mt-3">
-              <button class="border-0 rounded-pill cal-button px-3 py-2">
-                <span>
-                  <img src="./assets/images/icon-calculator.svg" alt="" />
-                </span>
-                Calculate repayments
-              </button>
+              <!-- Mortgage Term input -->
+              <div class="col-lg-6 col-md-6 col-sm-6 mortage-term-column">
+                <p>Mortgage Term</p>
+                <div class="input-group mb-3">
+                  <input
+                    type="text"
+                    id="mortgageTerm"
+                    class="form-control"
+                    aria-label="Mortgage Term"
+                    aria-describedby="basic-addon2"
+                  />
+                  <span class="input-group-text w-lg-50" id="basic-addon2">years</span>
+                </div>
+                <p id="mortgageTermError" class="text-danger"></p>
+              </div>
+
+              <!-- Interest Rate input -->
+              <div class="col-lg-6 col-md-6 col-sm-6 interest-rate-coulmn">
+                <p>Interest Rate</p>
+                <div class="input-group mb-3">
+                  <input
+                    type="text"
+                    id="interestRate"
+                    class="form-control"
+                    aria-label="Interest Rate"
+                    aria-describedby="basic-addon2"
+                  />
+                  <span class="input-group-text w-lg-25" id="basic-addon2">%</span>
+                </div>
+                <p id="interestRateError" class="text-danger"></p>
+              </div>
+
+              <!-- Mortgage Type selection (Radio buttons) -->
+              <div class="col-lg-12 mortage-type-column">
+                <p>Mortgage Type</p>
+                <div class="radio-list">
+                  <div class="radio-item">
+                    <input type="radio" name="mortgageType" id="radio1" value="Repayment" />
+                    <label for="radio1">Repayment</label>
+                  </div>
+                </div>
+                <div class="radio-list">
+                  <div class="radio-item">
+                    <input
+                      type="radio"
+                      name="mortgageType"
+                      id="radio2"
+                      value="Interest Only"
+                    />
+                    <label for="radio2">Interest Only</label>
+                  </div>
+                </div>
+                <p id="mortgageTypeError" class="text-danger"></p>
+              </div>
+
+              <!-- Calculate button -->
+              <div class="col-lg-12 mt-3">
+                <button
+                  type="submit"
+                  class="border-0 rounded-pill cal-button px-3 py-2"
+                >
+                  <span>
+                    <img src="./assets/images/icon-calculator.svg" alt="" />
+                  </span>
+                  Calculate repayments
+                </button>
+              </div>
             </div>
-          </div>
+          </form>
         </div>
         <!-- End of left section -->
 
         <!-- Right section for displaying calculation results -->
         <div class="col-lg-6 right-col">
-          <div class="d-flex flex-column justify-content-center align-items-center h-100 text-center">
+          <div
+            class="d-flex flex-column justify-content-center align-items-center h-100 text-center"
+          >
             <div class="d-flex justify-content-center">
               <img
                 width="150px"
@@ -138,5 +157,6 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+    <script src="./script.js"></script>
   </body>
 </html>
